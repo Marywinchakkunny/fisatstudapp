@@ -6,13 +6,18 @@ import axios from 'axios'
 const Viewall = () => {
     const [data, changeData] = useState([])
     const fetchData = () =>{
-        axios.get("https://anishpdm.github.io/dummy-api-new/student.json").then(
+        axios.get("https://courseapplogix.onrender.com/getdata").then(
        (response) =>{
                 changeData(response.data)
         }
         
       
-     ) .catch().finally()
+     ) .catch(
+        (error)=>{
+            console.log(error.message)
+            alert("error message")
+        }
+     ).finally()
 
 
 
@@ -42,14 +47,14 @@ const Viewall = () => {
                                     <th scope="col">mobile</th>
                                     <th scope="col">email</th>
                                     <th scope="col">address</th>
-                                    <th scope="col">__v</th>
+                                    
                                 </tr>
                             </thead>
 
                             <tbody>
                                 {data.map(
                                     (value,index) =>{return <tr>
-                                            <th scope="row">{value._id}</th>
+                                            <th scope="row">{index}</th>
                                             <td>{value.firstname}</td>
                                             <td>{value.lastname}</td>
                                             <td>{value.college}</td>
@@ -58,7 +63,7 @@ const Viewall = () => {
                                             <td>{value.mobile}</td>
                                             <td>{value.email}</td>
                                             <td>{value.address}</td>
-                                            <td>{value.__v}</td>
+                                           
 
 
                                         </tr>}
